@@ -20,9 +20,9 @@ def find_max_min(data):
 
 def convert(data):
     print('\nThe temperatures in Fahrenheit:')
-    for temperature in data:
-        value = np.round(temperature * 9 / 5 + 32)
-        print(f'    {value}°F')
+    new_data = np.array(data) * 9 / 5 + 32
+    for temperature in new_data:
+        print(f'    {temperature}°F')
     print()
 
 

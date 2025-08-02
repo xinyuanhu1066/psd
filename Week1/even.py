@@ -9,8 +9,10 @@ def sum_of_numbers():
         odd_sum = 0
         while i <= n:
             if i % 2 == 0:
+                print('even number:', i)
                 even_sum += i
             else:
+                print('odd number:', i)
                 odd_sum += i
             i += 1
         print('sum of even numbers:', even_sum)

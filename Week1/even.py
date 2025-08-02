@@ -7,15 +7,19 @@ def sum_of_numbers():
         i = 1
         even_sum = 0
         odd_sum = 0
+        even_nums = []
+        odd_nums = []
         while i <= n:
             if i % 2 == 0:
-                print('even number:', i)
+                even_nums.append(i)
                 even_sum += i
             else:
-                print('odd number:', i)
+                odd_nums.append(i)
                 odd_sum += i
             i += 1
+        print('even numbers:', even_nums)
         print('sum of even numbers:', even_sum)
+        print('odd numbers:', odd_nums)
         print('sum of odd numbers:', odd_sum)
     
 if __name__ == '__main__':

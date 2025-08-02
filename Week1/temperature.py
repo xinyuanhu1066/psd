@@ -28,9 +28,9 @@ def convert(data):
 
 def filter_days(data):
     print('The days where temperature > 20°C:')
-    for index,temperature in enumerate(data):
-        if temperature > 20:
-            print(f'   {days[index]}')
+    day_indices = np.where(np.array(data) > 20)[0]
+    for index in day_indices:
+        print(f'   {days[index]}')
     print()
 
 

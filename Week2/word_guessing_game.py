@@ -19,6 +19,7 @@ def run_game(word_info, lives):
     left_lives = lives
     target_word, blanked_word = word_info
     while True:
+        print(f'The word is {blanked_word}')
         letter = input('Please guess a letter: ')
         if letter in target_word:
             for index, current_letter in enumerate(target_word):

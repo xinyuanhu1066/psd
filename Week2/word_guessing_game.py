@@ -23,7 +23,7 @@ def run_game(word_info, lives):
         letter = input('Please guess a letter: ')
         if letter in target_word:
             for index, current_letter in enumerate(target_word):
-                if current_letter == letter:
+                if current_letter == letter and blanked_word[index] == ' ':
                     blanked_word[index] = letter
                     break
             if blanked_word.count(' ') == 0:

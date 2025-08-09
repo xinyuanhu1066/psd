@@ -1,0 +1,79 @@
+import random
+import re
+
+
+class Game:
+    def __init__(self, max_lives=5):
+        self.max_lives = max_lives
+        self.words = [
+            'lion', 'leopard', 'tiger', 
+            'jaguar', 'cheetah', 'cougar'
+        ]
+
+    def generate_random_word(self):
+        """Return a random word from a pre-defined word list."""
+        return random.choice(self.words)
+
+
+    def initialise_blanks(self, word):
+        """Create several blanks according to the length of word."""
+        return ['_' for _ in word]
+
+
+    def fill_blanks(self, blanks, orig_word, letter):
+        """Replace blanks correspond to all the occurrences of the
+        letter in the original word.
+        """
+        for index, char in enumerate(orig_word):
+            if char == letter:
+                blanks[index] = letter
+
+
+    def display_blanks(self, blanks):
+        """Print the current blank list, each item is separated by a space."""
+        print(' '.join(blanks))
+
+
+    def run(self):
+        """Main game loop."""
+        word = self.generate_random_word()
+        blanks = self.initialise_blanks(word)
+        left_lives = self.max_lives
+        tried_letters = set()
+
+        print('\nWelcome to Word Guessing!')
+        print(f'The word has {len(word)} letters, and you have {left_lives} lives.')
+
+        while True:
+            self.display_blanks(blanks)
+            user_guess = input('Please guess a letter: ').lower()
+            # Check user input is only a single letter
+            if not re.match(r'^[a-z]$', user_guess):
+                print('Invalid input, please type a single letter.')
+                continue
+            # Check if user has already used the letter
+            if user_guess not in tried_letters:
+                tried_letters.add(user_guess)
+            else:
+                print(f'You have tried this letter. Your lives is {left_lives}.\n')
+                continue
+            if user_guess in word:
+                self.fill_blanks(blanks, word, user_guess)
+                # Check if all blank fields are filled
+                if blanks.count('_') == 0:
+                    print('\nCongratulations!')
+                    print(f'The word is: {word}\n')
+                    break
+                else:
+                    print('Good job!\n')
+            else:
+                left_lives -= 1
+                print(f'Wrong letter, you have {left_lives} lives left.\n')
+                if left_lives == 0:
+                    print(f'\nGame over!')
+                    print(f'The word is: {word}\n')
+                    break
+
+
+if __name__ == '__main__':
+    Game().run()

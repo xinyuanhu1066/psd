@@ -1,11 +1,15 @@
 class StringManipulator:
     def find_character(self, text, char):
+        # text: the target string to be manipulated, passed by user
+        # char: the character to be found
         return text.find(char)
 
     def length(self, text):
+        # text: the target string to be manipulated, passed by user
         return len(text)
 
     def upper(self, text):
+        # text: the target string to be manipulated, passed by user
         return text.upper()
 
 

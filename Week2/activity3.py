@@ -13,8 +13,11 @@ class StringManipulator:
 
 
 if __name__ == '__main__':
-    name = StringManipulator('example')
-    result = name.find_character('x')
-    print(f'\nThe index is {result}\n')
-    print(f'The length of is: {name.length()}')
-    print(f'\nThe uppercase is: {name.upper()}\n')
+    test_str = 'example'
+    test_char = 'x'
+    name = StringManipulator(test_str)
+    index = name.find_character(test_char)
+    print(f'\nThe text is: "{test_str}"')
+    print(f'\nThe index of "{test_char}" is: {index}\n')
+    print(f'The length of "{test_str}" is: {name.length()}')
+    print(f'\nThe uppercase of "{test_str}" is: {name.upper()}\n')

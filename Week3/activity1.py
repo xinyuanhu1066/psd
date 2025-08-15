@@ -11,7 +11,7 @@ def main():
     file = open('demo.txt', 'r')
     content = file.read()
     print(content)
-    print(f'\n{"-" * 80}\ndemo.txt has {len(content)} lines.\n')
+    print(f'\n{"-" * 80}\ndemo.txt has {len(content.split("\n"))} lines.\n')
     file.close()
 
 

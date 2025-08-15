@@ -9,8 +9,9 @@ def main():
 
     # Open demo.txt with readonly mode
     file = open('demo.txt', 'r')
-    print(file.read())
-    print(f'\n{"-" * 80}\ndemo.txt has {len(file.read())} lines.\n')
+    content = file.read()
+    print(content)
+    print(f'\n{"-" * 80}\ndemo.txt has {len(content)} lines.\n')
     file.close()
 
 

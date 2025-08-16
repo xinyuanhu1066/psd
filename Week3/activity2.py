@@ -7,13 +7,9 @@ class FileProcessor:
 
     def count_words(self):
         file = open(self.file_path, 'r', encoding='utf-8')
-        # Count words for each line because spliting string by space, so '\n' in the end of line
-        # will not be splited
-        result = 0
-        for line in file:
-            result += len(line.split(' '))
+        amount = len(file.read().split())
         file.close()
-        return result
+        return amount
     
 
 if __name__ == '__main__':

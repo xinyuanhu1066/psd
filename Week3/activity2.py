@@ -12,6 +12,7 @@ class FileProcessor:
         result = 0
         for line in file:
             result += len(line.split(' '))
+        file.close()
         return result
     
 

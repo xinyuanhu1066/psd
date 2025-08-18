@@ -4,6 +4,14 @@ This project is a command line tool to manage college's elective course system.
 It stores the information of courses, lecturers, students, classrooms and grades into a SQLite3 database.
 You can add, delete and view the records of the database from the single command line user interface.
 
+
+Project structure
+=================
+- main.py: Entry point of the command line tool
+- database.py: Define a DBBackend class to manage database connection and initialisation.
+- model.py: Contains multiple classes for database entities. Each one implements table basic operations.
+
+
 How to run
 ==========
 1. Open a terminal, change to the project directory:

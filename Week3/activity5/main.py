@@ -25,7 +25,7 @@ def main():
             users = view_users()
             for user in users:
                 print(user)
-        if choice == '3':
+        elif choice == '3':
             name = input("Enter name: ")
             address = input("Enter address: ")
             add_student(name, address)

@@ -1,9 +1,27 @@
-Actors:
+Project Scope
+===============
+To enrich the students' knowledge base, the college provided many elective courses. 
+The courses are grouped into di;erent categories. A Lecturer can provide multiple courses 
+for more than one category.
+A student can choose more than one courses based on his or her interests.
+There are a few classrooms. One classroom can hold many elective courses.
+The Lecturer of the course gives mark for each student and store it into the database.
+The database on the back end should have the following entities:
+• Course
+• Category
+• Student
+• Lecturer
+• Classroom
+• Grade
+
+Actors
+=======
 - Student
 - Lecturer
 - Administrator
 
-Use cases:
+Use Cases
+=========
 - Administrator adds classroom to the system
 - Lecturer adds course to the system
 - Lecturer chooses a classroom for a course

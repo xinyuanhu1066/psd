@@ -1,0 +1,15 @@
+Actors:
+- Student
+- Lecturer
+- Administrator
+
+Use cases:
+- Administrator add classroom to the system
+- Lecturer adds course to the system
+- Lecturer chooses a classroom for a course
+- Lecturer chooses category for a course
+- Lecturer provides grade marks for students
+- Student views all the courses
+- Student views courses by category
+- Student registers one or more courses
+- Student views courses' grades

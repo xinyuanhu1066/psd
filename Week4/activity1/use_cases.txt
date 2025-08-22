@@ -4,7 +4,7 @@ Actors:
 - Administrator
 
 Use cases:
-- Administrator add classroom to the system
+- Administrator adds classroom to the system
 - Lecturer adds course to the system
 - Lecturer chooses a classroom for a course
 - Lecturer chooses category for a course

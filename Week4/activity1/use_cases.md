@@ -1,5 +1,4 @@
-Project Scope
-===============
+## Project Scope
 To enrich the students' knowledge base, the college provided many elective courses. 
 The courses are grouped into di;erent categories. A Lecturer can provide multiple courses 
 for more than one category.
@@ -14,23 +13,32 @@ The database on the back end should have the following entities:
 • Classroom
 • Grade
 
-Actors
-=======
+## Actors
 - Student
 - Lecturer
 - Administrator
 
-Use Cases
-=========
-- Administrator adds classroom to the system
-- Administrator adds course category
-- Lecturer adds course to the system
-- Lecturer chooses a classroom for a course
-- Lecturer chooses category for a course
-- Lecturer provides grade marks for students
-- Student views all the courses
-- Student views courses by category
-- Student registers one or more courses
-- Student views courses' grades
-- Student registers and updates profile
-- Student submits assignments
+## Use Cases
+### Administrator
+- Add classroom to the system
+- Add course category
+- Add lecturers and update their profiles
+
+### Lecturer
+- Add course to the system
+- Choose a classroom for a course
+- Choose category for a course
+- Set timetable for a course
+- Provide grade marks for students
+- Calculate pass rate of a course
+
+### Student
+- View all the courses
+- View courses by category
+- Select one or more courses
+- View courses' grades
+- Register and updates profile
+
+## Use Case Diagram
+
+![](usecases.drawio.png)

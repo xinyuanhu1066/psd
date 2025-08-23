@@ -33,3 +33,4 @@ Use Cases
 - Student registers one or more courses
 - Student views courses' grades
 - Student registers and updates profile
+- Student submits assignments

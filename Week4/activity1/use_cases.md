@@ -31,6 +31,7 @@ The database on the back end should have the following entities:
 - Set timetable for a course
 - Provide grade marks for students
 - Calculate pass rate of a course
+- Regrade second assessment attempt if mark is below 50%
 
 ### Student
 - View all the courses

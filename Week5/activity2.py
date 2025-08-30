@@ -37,3 +37,14 @@ class GeneralStaff(Staff):
     def __init__(self, name, address, age, id, tax_code, pay_rate):
         super().__init__(name, address, age, id, tax_code)
         self.pay_rate = pay_rate
+
+
+if __name__ == '__main__':
+    student = Student('Mike', '15 Union St.', '22', '123456')
+    # access the name attribute defined in parent class Person
+    print(student.name)
+    general_staff = GeneralStaff('21 Greys Avenue', '35', '112345', '567890', '100')
+    # access the name attribute defined in grand parent class Person
+    print(general_staff.name)
+    # access the tax_code attribute defined in parent class Staff
+    print(general_staff.tax_code)

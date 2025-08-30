@@ -40,10 +40,10 @@ class GeneralStaff(Staff):
 
 
 if __name__ == '__main__':
-    student = Student('Mike', '15 Union St.', '22', '123456')
+    student = Student('Mike', '15 Union St.', '22', '123456', 'academic record')
     # access the name attribute defined in parent class Person
     print(student.name)
-    general_staff = GeneralStaff('21 Greys Avenue', '35', '112345', '567890', '100')
+    general_staff = GeneralStaff('Leo', '21 Greys Avenue', '35', '112345', '567890', '100')
     # access the name attribute defined in grand parent class Person
     print(general_staff.name)
     # access the tax_code attribute defined in parent class Staff

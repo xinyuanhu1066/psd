@@ -1,0 +1,5 @@
+Question: Can we update the code with adding a "Course" class to Week 5, Activity 3? 
+
+Answer: Yes. We can add a "Course" class, but not using inheritance. 
+        Because "Course" has a different structure compared to "Person". So "Course"
+        is added as a standalone class.

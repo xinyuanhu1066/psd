@@ -9,6 +9,12 @@ class Student:
 
     def get_grade_with_name(self):
         return f'{self.name}: {self.__grade}'
+    
+    def update_info(self):
+        # change private attribute's value. It can be accessed because
+        # it is defined in the current class
+        self.__grade = 'A+'
+
 
 class InternationalStudent(Student):
     def __init__(self, name, age):

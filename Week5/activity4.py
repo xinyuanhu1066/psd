@@ -18,6 +18,7 @@ class Student(Person):
         self.academic_record = academic_record = academic_record
 
     def greet(self):
+        # Override greet() in parent class Person
         print("Hello! I'm a student from Yoobee College. My name is", self.name)
 
 

@@ -1,4 +1,6 @@
-from services import *
+import services
+import services_new
+import sqlite3
 import time
 
 
@@ -61,12 +63,17 @@ def create_tables():
 def main():
     create_tables()
     begin_time = time.time()
-    users = UserService().get_user(1)
-    orders = OrderService().get_orders(1)
+    users = services.UserService().get_user(1)
+    orders = services.OrderService().get_orders(1)
     end_time = time.time()
-    print(users)
-    print(orders)
     print('time costed:', end_time - begin_time)
+
+    begin_time = time.time()
+    users = services_new.UserService().get_user(1)
+    orders = services_new.OrderService().get_orders(1)
+    services_new.DBConnector().get_connection().close()
+    end_time = time.time()
+    print('time costed for singleton:', end_time - begin_time)
 
 
 if __name__ == '__main__':

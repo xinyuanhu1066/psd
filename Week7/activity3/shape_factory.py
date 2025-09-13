@@ -28,8 +28,7 @@ class Triangle(Shape):
 class ShapeFactory:
     _registry = {
         "circle": Circle,
-        "square": Square,
-        "triangle": Triangle,
+        "square": Square
     }
 
     @classmethod
@@ -46,6 +45,9 @@ class ShapeFactory:
             raise ValueError(f"Unknown shape type: {shape_type!r}. "
                              f"Available: {', '.join(cls._registry)}")
         return shape_cls()
+
+
+ShapeFactory.register('triangle', Triangle)
 
 
 # 4) Client code (examples)

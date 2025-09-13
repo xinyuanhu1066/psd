@@ -69,9 +69,10 @@ def main():
     print('time costed:', end_time - begin_time)
 
     begin_time = time.time()
-    users = services_new.UserService().get_user(1)
-    orders = services_new.OrderService().get_orders(1)
-    services_new.DBConnector().get_connection().close()
+    db = services_new.DBConnector()
+    users = services_new.UserService(db).get_user(1)
+    orders = services_new.OrderService(db).get_orders(1)
+    db.get_connection().close()
     end_time = time.time()
     print('time costed for singleton:', end_time - begin_time)
 

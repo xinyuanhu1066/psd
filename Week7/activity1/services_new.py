@@ -16,8 +16,11 @@ class DBConnector:
 
 
 class UserService:
+    def __init__(self, db):
+        self.__db = db
+
     def get_user(self, user_id):
-        conn = DBConnector().get_connection()
+        conn = self.__db.get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))
         result = cursor.fetchone()
@@ -25,8 +28,11 @@ class UserService:
     
 
 class OrderService:
+    def __init__(self, db):
+        self.__db = db
+
     def get_orders(self, user_id):
-        conn = DBConnector().get_connection()
+        conn = self.__db.get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM orders WHERE user_id = ?', (user_id,))
         result = cursor.fetchall()

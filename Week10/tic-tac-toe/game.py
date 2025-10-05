@@ -4,7 +4,7 @@ import re
 import random
 import select
 import sys
-from prettytable import PrettyTable, HRuleStyle, VRuleStyle
+from prettytable import PrettyTable
 
 
 COLUMN_LETTERS = ['A', 'B', 'C']

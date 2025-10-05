@@ -1,8 +1,12 @@
 import re
 import random
+import select
+import sys
+import readline
 
 
 COLUMN_LETTERS = ['A', 'B', 'C']
+TIMEOUT = 10
 
 
 class Board:
@@ -68,19 +72,37 @@ class Player:
         self.__mark = value
 
     def move(self, board):
+        time_left = TIMEOUT
         while True:
             if self.__auto_place:
                 coordinate = COLUMN_LETTERS[random.randint(0,2)] + str(random.randint(1,3))
                 print(f'{self.__name} moves to: {coordinate}')
             else:
-                while True:
-                    coordinate = input(f'{self.__name} moves to: ').strip()
-                    if re.match(r'[a-cA-C]\d', coordinate):
-                        break
-                    print('Invalid coordinate! Example: A1, B2')
+                while time_left > 0:
+                    time_left -= 1
+                    self._prompt(f'{self.__name} moves to ({time_left} seconds left): ')
+                    read_list, _, _ = select.select([sys.stdin], [], [], 1.0)
+                    if len(read_list) > 0:
+                        coordinate = sys.stdin.readline().strip()
+                        if re.match(r'[a-cA-C]\d', coordinate):
+                            break
+                        print('\nInvalid coordinate! Example: A1, B2\n')
+                if time_left == 0:
+                    print('\nYour turn is timeout!\n')
+                    return False
             if board.place_mark(self.__mark, coordinate):
-                break
-            print('This place is taken. Try another one.')
+                return True
+            print('\nThis place is taken. Try another one.\n')
+
+    def _prompt(self, message):
+        # save cursor position
+        sys.stdout.write('\x1b[s')
+        # move cursor to upper line and clear it
+        sys.stdout.write('\x1b[1A\x1b[2K')
+        sys.stdout.write(f'{message}\n')
+        # restore cursor position
+        sys.stdout.write('\x1b[u')
+        sys.stdout.flush()
 
 
 class Game:
@@ -91,11 +113,14 @@ class Game:
         self.__winner = None
 
     def run(self):
+        print('\nWelcome to Tic Tac Toe game!\n')
         self._get_x_or_o()
+        self.__board.display()
         while True:
-            self.__board.display()
             player = self._next_player()
-            player.move(self.__board)
+            if not player.move(self.__board):
+                continue
+            self.__board.display()
             if self._is_game_over():
                 self._print_result()
                 break

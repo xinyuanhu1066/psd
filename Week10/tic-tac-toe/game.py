@@ -1,8 +1,9 @@
+'''Tic Tac Toe game implementation'''
+
 import re
 import random
 import select
 import sys
-import readline
 
 
 COLUMN_LETTERS = ['A', 'B', 'C']
@@ -10,6 +11,7 @@ TIMEOUT = 10
 
 
 class Board:
+    '''Game board'''
     def __init__(self):
         self.__matrix = [
             [''] * 3,
@@ -18,14 +20,16 @@ class Board:
         ]
 
     def display(self):
+        '''Print current board marks in console'''
         print()
-        print(' {}'.format(' '.join(COLUMN_LETTERS)))
+        print(f" {' '.join(COLUMN_LETTERS)}")
         print()
         for index, row in enumerate(self.__matrix):
-            print('{} {}'.format(index + 1, ' '.join(row)))
+            print(f"{index + 1} {' '.join(row)}")
         print()
 
     def place_mark(self, mark, coordinate):
+        '''Set a mark into board with its coordinate'''
         column_letter, row_index = re.match(r'([a-cA-C])(\d)', coordinate).groups()
         column_index = ord(column_letter.lower()) - ord('a')
         row_index = int(row_index) - 1
@@ -35,6 +39,7 @@ class Board:
         return True
 
     def is_mark_in_straight_line(self, mark):
+        '''Check if there are three marks in one line'''
         for row in self.__matrix:
             if mark * 3 == ''.join(row):
                 return True
@@ -50,6 +55,7 @@ class Board:
 
 
 class Player:
+    '''Game player'''
     def __init__(self, name, auto_place=False):
         self.__name = name
         self.__auto_place = auto_place
@@ -57,21 +63,27 @@ class Player:
 
     @property
     def name(self):
+        '''Return player'name'''
         return self.__name
 
     @property
     def auto_place(self):
+        '''Return if the player places mark automatically'''
         return self.__auto_place
 
     @property
     def mark(self):
+        '''Return the mark's value'''
         return self.__mark
-    
+
     @mark.setter
     def mark(self, value):
         self.__mark = value
 
-    def move(self, board):
+    def move(self, game_board):
+        '''Prompt the user to input coordinate or use random
+           coordinate if auto_place=True, and then update game
+           board.'''
         time_left = TIMEOUT
         while True:
             if self.__auto_place:
@@ -90,7 +102,7 @@ class Player:
                 if time_left == 0:
                     print('\nYour turn is timeout!\n')
                     return False
-            if board.place_mark(self.__mark, coordinate):
+            if game_board.place_mark(self.__mark, coordinate):
                 return True
             print('\nThis place is taken. Try another one.\n')
 
@@ -106,13 +118,15 @@ class Player:
 
 
 class Game:
-    def __init__(self, board, players):
-        self.__board = board
-        self.__players = players
+    '''Game controller'''
+    def __init__(self, game_board, game_players):
+        self.__board = game_board
+        self.__players = game_players
         self.__turn_index = 0
         self.__winner = None
 
     def run(self):
+        '''Main game logic'''
         print('\nWelcome to Tic Tac Toe game!\n')
         self._get_x_or_o()
         self.__board.display()
@@ -148,12 +162,12 @@ class Game:
         return player
 
     def _is_game_over(self):
-        players = {}
+        game_players = {}
         for player in self.__players:
-            players[player.mark] = player
+            game_players[player.mark] = player
         for mark in ['x', 'o']:
             if self.__board.is_mark_in_straight_line(mark):
-                self.__winner = players[mark]
+                self.__winner = game_players[mark]
                 break
         if self.__winner:
             return True

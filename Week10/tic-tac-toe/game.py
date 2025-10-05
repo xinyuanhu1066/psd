@@ -4,6 +4,7 @@ import re
 import random
 import select
 import sys
+from prettytable import PrettyTable, HRuleStyle, VRuleStyle
 
 
 COLUMN_LETTERS = ['A', 'B', 'C']
@@ -22,10 +23,17 @@ class Board:
     def display(self):
         '''Print current board marks in console'''
         print()
-        print(f" {' '.join(COLUMN_LETTERS)}")
-        print()
-        for index, row in enumerate(self.__matrix):
-            print(f"{index + 1} {' '.join(row)}")
+        table = PrettyTable()
+        table.hrules = True
+        table.vrules = True
+        table.padding_width = 1
+        table.preserve_internal_border = True
+        table.field_names = [' '] + COLUMN_LETTERS
+        table.add_rows([[index + 1] + row for index, row in enumerate(self.__matrix)])
+        table_str = str(table).splitlines()
+        table_str = table_str[1:]
+        lines = [line[1:] for line in table_str]
+        print('\n'.join(lines))
         print()
 
     def place_mark(self, mark, coordinate):

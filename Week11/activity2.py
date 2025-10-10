@@ -15,6 +15,8 @@ class ExpenseTracker:
             amount = float(amount)
         except (ValueError, TypeError):
             return False
+        if amount < 0:
+            return False
         self.__expenses.append((description, amount))
         return True
 
@@ -37,6 +39,7 @@ class TestExpenseTracker(unittest.TestCase):
         self.assertTrue(tracker.add_expense('Bread', 1.98))
         self.assertTrue(tracker.add_expense('Chicken', '8.5'))
         self.assertFalse(tracker.add_expense('Apple', 'apple'))
+        self.assertFalse(tracker.add_expense('Beef', -25))
 
     def test_total_expense(self):
         '''Test for ExpenseTracker.total_expense'''

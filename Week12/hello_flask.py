@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -69,20 +70,19 @@ def upload_image():
     return f'<p><a href="#">Hyper Link</a></p>\n<p><input type="file" /></p>'
 
 
-@app.route('/temperature/<number>')
-def convert_temperature(number):
-    try:
-        number = float(number)
-    except Exception:
-        return '<h1>Input temperature value is not valid</h1>'
-    from_unit = request.args.get('from') or ''
-    to_unit = request.args.get('to') or ''
-    if not from_unit or not to_unit:
-        return '<h1>Input convertion parameter is not valid</h1>'
-    converter = temperature_converters[f'{from_unit}_to_{to_unit}']
-    result = converter['func'](number)
-    return (
-        f"<h1>"
-        f"Temperature {number} {converter['unit']['from']} is converted to"
-        f" {result} {converter['unit']['to']}"
-        "</h1>")
+@app.route('/temperature', methods=['GET', 'POST'])
+def convert_temperature():
+    if request.method == 'GET':
+        return render_template('converter.html')
+    else:
+        try:
+            number = float(request.form.get('temperature'))
+        except Exception:
+            return '<h1>Input temperature value is not valid</h1>'
+        from_unit = request.form.get('from') or ''
+        to_unit = request.form.get('to') or ''
+        if (not from_unit or not to_unit) or from_unit == to_unit:
+            return '<h1>Input convertion parameter is not valid</h1>'
+        converter = temperature_converters[f'{from_unit}_to_{to_unit}']
+        result = converter['func'](number)
+        return render_template('converter.html', result=result)
